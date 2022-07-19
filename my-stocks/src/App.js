@@ -1,13 +1,13 @@
-
+import React from 'react';
+import AppRoutes from './routes/routes';
+import StockProvider
+ from './context/StockProvider';
+ 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          My Stocks App
-        </p>
-      </header>
-    </div>
+    <StockProvider>
+      <AppRoutes />
+    </StockProvider>
   );
 }
 
