@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -41,11 +40,5 @@ const Login = () => {
     </form>
   );
 }
-
-Login.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default Login;
