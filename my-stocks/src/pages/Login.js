@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import StockContext from '../context/StockContext';
 
 const Login = () => {
-  const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const {
+    userEmail,
+    setUserEmail,
+    setBalanceValue,
+  } = useContext(StockContext);
   
   const verifyUser = () => {
     const validateEmail = /^\w+@\w+\.\w+$/;
@@ -12,7 +17,20 @@ const Login = () => {
       return true;
     }
   };
+
+  const usersBalancesList = () => JSON.parse(localStorage
+    .getItem('balance'));
   
+  const getSavedUser = () => {
+    const userIsSaved = usersBalancesList.find(({ user }) => user === userEmail);
+    
+    if (userIsSaved) {
+      setBalanceValue(userIsSaved.value)
+      navigate("/general")
+    }
+    setBalanceValue(0);
+  }
+
   let navigate = useNavigate();
   
   return (
@@ -33,10 +51,18 @@ const Login = () => {
         type="button"
         data-testid="login-button"
         disabled={ verifyUser() }
-        onClick={ () => navigate("/general") }
+        onClick={ () => getSavedUser() }
       >
         Entrar
       </button>
+      <button
+        type="button"
+        data-testid="registrate-button"
+        onClick={ () => navigate("/guide") }
+      >
+        Registrate
+      </button>
+      
     </form>
   );
 }
