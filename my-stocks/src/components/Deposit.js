@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import StockContext from '../context/StockContext';
 
@@ -9,15 +10,22 @@ const Deposit = () => {
     balanceUpdateInput,
     setBalanceUpdateInput,
     userEmail,
+    userName, 
     usersBalances,
     setUsersBalances,
   } = useContext(StockContext);
 
+  let navigate = useNavigate();
+
+
   const updateBalance = () => {
     const newBalance = (+balanceValue + +balanceUpdateInput);
-    localStorage.setItem('balance', JSON.stringify([...usersBalances, {value: newBalance, user: userEmail}]));
-    setUsersBalances([...usersBalances, {value: newBalance, user: userEmail}]);
-    setBalanceValue(newBalance);
+    const userObj = {value: newBalance, email: userEmail, name: userName};
+
+    localStorage.setItem('balance', JSON.stringify([...usersBalances, userObj]));
+    setUsersBalances([...usersBalances, userObj]);
+    setBalanceValue(+newBalance);
+    navigate('/general');
   }
 
   return (
