@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StockContext from '../context/StockContext';
+import { validateEmailAndPassword } from '../helpers/Helpers';
+import stocks from '../db/data';
 
 const Registration = () => {
   let user = {};
@@ -9,9 +11,21 @@ const Registration = () => {
   const {
     usersData,
     setUsersData,
+    userEmail,
     setUserEmail,
+    setUserName,
     setBalanceValue,
+    userPassword,
+    stocksList,
+    setStocksList,
+    tableUpdated, 
   } = useContext(StockContext);
+
+  const stocksArr = stocks.map((el) => ({
+    stock: el.cd_acao, 
+    company: el.nm_empresa_rdz, 
+    price: el.vl_medio, 
+    avaiableQnt: el.vl_volume}));
 
   useEffect(() => {
     delete user.firstName;
@@ -25,17 +39,28 @@ const Registration = () => {
     user[input] = inputValue;
     return user;
   }
-  
+
   const saveInStorage = (userObj) => {
+    const loginValidation = validateEmailAndPassword(userEmail, userPassword);
+
+    if (!loginValidation) {
+      alert('Email ou senha inválido!')
+    }
+
+    tableUpdated ? setStocksList(stocksList) : setStocksList(stocksArr);
+
     localStorage.setItem('user', JSON.stringify([...usersData, userObj]));
     setUserEmail(userObj.email)
     setUsersData([...usersData, userObj]);
+    setUserName(userObj.firstName);
     setBalanceValue(0)
     navigate('/account/deposit');
+
   }
 
   return (
     <>
+      <form>
       <input
       type="text"
       placeholder="Inform Your FirstName"
@@ -75,7 +100,8 @@ const Registration = () => {
         type="button"
         data-testid="save-button"
         onClick={ () => saveInStorage(user) }
-      >Save</button>
+      >Conclude Registration</button>
+    </form>  
     </>
   );
 }
