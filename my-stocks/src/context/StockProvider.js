@@ -10,6 +10,10 @@ const StockProvider = ({ children }) => {
   const [usersData, setUsersData] = useState([]);
   const [userEmail, setUserEmail] = useState('');
   const [usersBalances, setUsersBalances] = useState([]);
+  const [userName, setUserName] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [tableUpdated, setTableUpdated] = useState(false);
+  const [myStocks, setMyStocks] = useState([])
 
 
   const context = {
@@ -27,7 +31,16 @@ const StockProvider = ({ children }) => {
     setUserEmail,
     usersBalances,
     setUsersBalances,
+    userName, 
+    setUserName,
+    userPassword, 
+    setUserPassword,
+    tableUpdated, 
+    setTableUpdated,
+    myStocks, 
+    setMyStocks,
   };
+  
   return (
     <StockContext.Provider value={ context }>
       {children}
