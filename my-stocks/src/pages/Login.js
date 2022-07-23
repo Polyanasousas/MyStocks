@@ -1,66 +1,60 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StockContext from '../context/StockContext';
+import { checkUserSavedData} from '../helpers/Helpers';
 
 const Login = () => {
-  const [userPassword, setUserPassword] = useState('');
   const {
     userEmail,
     setUserEmail,
     setBalanceValue,
+    setUserName,
+    setUserPassword,
   } = useContext(StockContext);
   
-  const verifyUser = () => {
-    const validateEmail = /^\w+@\w+\.\w+$/;
-    const number = 6;
-    if (!validateEmail.test(userEmail) || userPassword.length <= number) {
-      return true;
-    }
-  };
-
-  const usersBalancesList = () => JSON.parse(localStorage
-    .getItem('balance'));
-  
-  const getSavedUser = () => {
-    const userIsSaved = usersBalancesList.find(({ user }) => user === userEmail);
+  let navigate = useNavigate();
     
-    if (userIsSaved) {
-      setBalanceValue(userIsSaved.value)
-      navigate("/general")
+  const getSavedUser = () => {
+    const savedUser = checkUserSavedData(userEmail, 'user');
+    
+    if (!savedUser) {
+      alert('Email ou senha inválidos')
+      navigate('/');
     }
-    setBalanceValue(0);
+    
+    setBalanceValue(+savedUser.value)
+    setUserName(savedUser.name);
+    navigate("/general")
   }
 
-  let navigate = useNavigate();
   
   return (
     <form>
       <input
         type="email"
         data-testid="email-input"
-        placeholder="Email"
+        placeholder="Inform your email"
         onChange={ ({ target }) => setUserEmail(target.value) }
       />
       <input
         type="password"
         data-testid="password-input"
-        placeholder="Password"
+        placeholder="Inform your password"
         onChange={ ({ target }) => setUserPassword(target.value) }
       />
       <button
         type="button"
         data-testid="login-button"
-        disabled={ verifyUser() }
         onClick={ () => getSavedUser() }
       >
-        Entrar
+        Sign in
       </button>
       <button
         type="button"
         data-testid="registrate-button"
         onClick={ () => navigate("/guide") }
       >
-        Registrate
+        Sign Up
       </button>
       
     </form>
