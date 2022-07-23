@@ -1,19 +1,17 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StockContext from '../context/StockContext';
-import stocks from '../db/data';
 import Header from '../components/Header';
 
 const General = () => {
   const {
     setSelectedStock,
+    stocksList,
   } = useContext(StockContext);
 
   let navigate = useNavigate();
 
-  const tableTitles = ['Stock', 'Company', 'Avarage Value(BRL)', 'Avaiable Quantity']
-
-  const stocksArr = stocks.map((el) => ({stock: el.cd_acao, company: el.nm_empresa_rdz, price: el.vl_medio, avaiableQnt: el.vl_volume}));
+  const tableTitles = ['Stock', 'Company',  'Unit Value(BRL)', 'Avaiable Qnt']
 
   const selectStock = (stock) => {
     setSelectedStock(stock)
@@ -30,7 +28,7 @@ const General = () => {
           </tr>
         </thead>
         <tbody>
-          {stocksArr.map((item) => (
+          {stocksList.map((item) => (
             <tr key={ item.stock }>
               {Object.values(item).map((el) => (<td key={ el }>{ el }</td>))}
               <td>
