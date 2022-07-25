@@ -75,6 +75,7 @@ const Login = () => {
       <button
         type="button"
         data-testid="login-button"
+        disabled={true}
         onClick={ () => getSavedUser() }
       >
         Sign in
