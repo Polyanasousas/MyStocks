@@ -1,0 +1,70 @@
+.transaction-page {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: 20px;
+}
+
+.transaction-page h3 {
+  padding: 20px;
+  color: #d99b08;
+}
+
+.transaction-page form input {
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+  background-color: black;
+  color: white
+}
+
+.transaction-page form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.account-text-input-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: black;
+  border-radius: 10px;
+  height: 180px;
+  margin-top: 30px;
+}
+
+.account-number-container {
+  background-color: white;
+  width: 200px;
+  height: 30px;
+  margin-top: -30px;
+  margin-left: 40px;
+  border-radius: 3px;
+}
+
+.account-number-container span {
+  font-size: 30px;
+}
+
+.transaction-page form button{
+  margin: 8px;
+  height: 27px;
+  border-radius: 10px;
+  border: none;
+  background-color: #d99b08;
+}
+
+.transaction-to-general-btn {
+  margin-top: 80px;
+  margin-left: 100px;
+}
+
+.transaction-to-general-btn button {
+  background-color: white;
+  border: none;
+  height: 30px;
+  width: 100px;
+  border-radius: 10px;
+}
