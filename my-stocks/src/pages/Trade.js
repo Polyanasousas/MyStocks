@@ -1,76 +1,76 @@
 import React, { useContext, useState } from 'react';
 import StockContext from '../context/StockContext';
 import Header from '../components/Header';
-import { updateBalanceInStorage, updateGeneralTable } from '../helpers/Helpers';
+import { updateBalanceInStorage } from '../helpers/Helpers';
+import { useNavigate } from 'react-router-dom';
 
 const Trade = () => {
-  const [purchaseQnt, setPurchaseQnt] = useState(0);
-  const [buyBtnClicked, setBuyBtnClicked] = useState(false);
-  /* const [sellBtnClicked, setSellBtnClicked] = useState(false); */
+  const [purchaseInput, setPurchaseInput] = useState(0);
 
   const {
     selectedStock,
     balanceValue,
     setBalanceValue,
-    setSelectedStock,
     userEmail,
     userName,
-    stocksList,
-    setStocksList,
-    setTableUpdated,
-    /* myStocks, 
-    setMyStocks, */
+    myStocks, 
+    setMyStocks,
   } = useContext(StockContext);
+
+  let navigate = useNavigate()
+
+  const selectedStockUpdated = {
+    stock: selectedStock.stock,
+    company: selectedStock.company,
+    price: selectedStock.price, 
+  };
 
   const verifyBalanceToBuy = () => {
     const allowedPurchase = Math.floor(+balanceValue / +selectedStock.price);
-    const purchase = +balanceValue - (+purchaseQnt * +selectedStock.price);
-    if (buyBtnClicked === true) setBuyBtnClicked(false);
+    const balance = +balanceValue - (+purchaseInput * +selectedStock.price);
     
-    if (purchaseQnt > allowedPurchase) {
+    
+    
+    if (purchaseInput > allowedPurchase) {
       alert('Purchase exceeded your available balance')
     }
 
-    const selectedStockUpdated = {
-      stock: selectedStock.stock,
-      company: selectedStock.company,
-      price: selectedStock.price, 
-      avaiableQnt: (+selectedStock.avaiableQnt - +purchaseQnt)};
-
     
-    
-    const updatedTable = updateGeneralTable(stocksList, selectedStockUpdated);
-    setStocksList(updatedTable)
-    updateBalanceInStorage(userEmail, purchase, userName);
-    setBalanceValue(purchase);
-    setTableUpdated(true);
-    setSelectedStock(selectedStockUpdated);
+    setMyStocks([...myStocks, selectedStockUpdated]);
+    updateBalanceInStorage(userEmail, balance, userName);
+    setBalanceValue(balance);
+    navigate('/my-stocks')
   }
 
-  const tableTitles = ['Stock', 'Company', 'Unit Value(BRL)', 'Avaiable Qnt', 'Purchased']
+  const verifyBalanceToSell = () => {
+    const balance = +balanceValue + (+purchaseInput * +selectedStock.price);
+    setBalanceValue(balance);
+    updateBalanceInStorage(userEmail, balance, userName);
+    navigate('/my-stocks')
+  }
 
   return (
     <>
     <Header />
-      <table border="1">
-        <thead>
-          <tr>
-            {tableTitles.map((title) => <th key={ title }>{ title }</th>)}
-            <th>Purchased</th>
-          </tr>
-        </thead>
-        <tbody>   
-            <tr key={ selectedStock.stock }>
-                {Object.values(selectedStock).map((el) => (<td key={ el }>{ el }</td>))}
-                <td>{purchaseQnt}</td>
-            </tr>
-        </tbody>
+      <table border="1" id="trade-table">
+        <tr>
+          <th>Stock</th>
+          <td>{selectedStock.stock}</td>
+        </tr>
+        <tr>
+          <th>Company</th>
+          <td>{selectedStock.company}</td>
+        </tr>
+        <tr>
+          <th>Unit(BRL)</th>
+          <td>{selectedStock.price}</td>
+        </tr>
       </table>
       <input
         type="text"
         data-testid="purchase-input"
         placeholder="Inform purchase quantity"
-        onChange={ ({ target }) => setPurchaseQnt(target.value) }
+        onChange={ ({ target }) => setPurchaseInput(target.value) }
       />
       <button
       data-testid="buy-stock-btn"
@@ -80,6 +80,7 @@ const Trade = () => {
       <button
       data-testid="sell-stock-btn"
       type="button"
+      onClick={ verifyBalanceToSell }
       >Sell</button>
     </>
   );
