@@ -31,6 +31,7 @@ const Account = () => {
         <Link to='/account/withdraw'>
           <div className='card-img-container'>
             <img
+              id="withdraw-img"
               data-testid='withdrawcard-image'
               src={ withdrawImage }
               width="100%"
