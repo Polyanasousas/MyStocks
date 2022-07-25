@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# My Stocks
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação FrontEnd, feita em React Javascript, com objetivo
+de aprofundar meus conhecimentos com gerenciamento de estado com Context Api e
+React Hooks. Sua estilização foi feita com Css puro e meu maior desafio foi 
+trabalhar a lógica de estados para múltiplas páginas.
 
-## Available Scripts
+## 🚀 Para Iniciar a Aplicação
 
-In the project directory, you can run:
+As instruções abaixo permitirão que você obtenha uma cópia do projeto em 
+operação na sua máquina local para fins de desenvolvimento.
 
-### `npm start`
+### 🔧 Instalação
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Passo-a-passo do que você deve executar para ter um ambiente de desenvolvimento.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone o repositório
 
-### `npm test`
+```
+  git clone git@github.com:Polyanasousas/MyStocks.git
+```
+  * Entre na pasta do repositório que você acabou de clonar:
+ ```
+    cd MyStocks && cd my-stocks
+```
+2. Instale as dependências e inicialize o projeto
+  * Instale as dependências:
+```
+    npm install
+``` 
+  * Inicialize o projeto: (uma nova página deve abrir no seu navegador com o login)
+```
+    npm start 
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ * Antes de começar a usar a aplicação, coloque as dimensões no site para  o tamanho 330x640 uma vez que o css do site foi feito para telas mobile.
 
-### `npm run build`
+## 📌  Utilizando a aplicação
+Passo a passo da melhor forma de utilizar a aplicação
+* Clique no botão sign up para ir para página de instruções.
+* Complete TODOS os inputs para obtermos seus dados e clique em READY para ir pra página de depósito
+* Insira um valor (de preferência acima de 100 000) no input e clique em Deposit para aumentar seu saldo no cabeçalho
+* Escolha uma ação e clique em trade para negociar
+* Insira uma quantidade que você quer comprar de ação
+* Clique em General para voltar para pagina principal e comprar mais ações
+* Depois de comprar mais ações veja que a página myStocks agora tem diversas ações compradas
+* Na tela general, clique em trade para negociar uma ação e repare que quando clica em buy ou sell o seu saldo no cabeçalho muda.
+* Clique em Account para depositar mais dinheiro ou retirar dinheiro e mudar seu saldo.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+OBS: Navegue pela aplicação utilizando os botões ou links da propria tela e não do browser
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Base de dados
+Essa aplicação foi feita utilizando como base de dados para tabela a seguite Api:
+[api-cotacao-b3](https://api-cotacao-b3.labdo.it/) 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ✒️ Autores
 
-### `npm run eject`
+* **Polyana Sousa** - [ Acesse meu linkedin!](https://www.linkedin.com/in/polyanasousa)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+⌨️ com ❤️ por [Polyana Sousa](https://gist.github.com/Polyanasousas) 😊
