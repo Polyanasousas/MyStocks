@@ -1,0 +1,22 @@
+#general-page-table {
+  margin-top: 25px;
+  margin-left: 50px;
+  border: none;
+}
+
+.general-page-td {
+  background: #decdff;
+  border: none;
+}
+
+#general-page-table th {
+  background: black;
+  color: white;
+  border: none;
+}
+
+.general-trade-button {
+  background-color: #d99b08;
+  color: black;
+  font-weight: bold;
+}
