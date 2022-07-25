@@ -5,7 +5,6 @@ import General from '../pages/General';
 import Trade from '../pages/Trade';
 import Deposit from '../components/Deposit';
 import Withdraw from '../components/Withdraw';
-import Historic from '../components/Historic';
 import MyStocks from '../pages/MyStocks';
 import Account from '../pages/Account';
 import Registration from '../components/Registration';
@@ -23,7 +22,6 @@ const AppRoutes = () => (
       <Route path="/account" element={ <Account />} />
       <Route path="/account/deposit" element={ <Deposit /> } />
       <Route path="/account/withdraw" element={ <Withdraw /> } />
-      <Route path="/account/historic" element={ <Historic /> } />
     </Routes>
   </BrowserRouter>
 );
